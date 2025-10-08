@@ -8,14 +8,12 @@ def get_book_text(filepath):
     return text
 
 def main():
-    try:
-        
-    text = get_book_text(frankenstein)
+    text = get_book_text(sys.argv[1])
     num_words = number_of_words(text)
     chars = number_of_characters(text)
     sort = sort_characters(chars)
     print("============ BOOKBOT ============")
-    print(f"Analyzing book found at {frankenstein}")
+    print(f"Analyzing book found at {sys.argv[1]}")
     print("----------- Word Count ----------")
     print(f"Found {num_words} total words")
     print("--------- Character Count -------")
@@ -23,5 +21,8 @@ def main():
         print(f"{s["char"]}: {s["num"]}")
     print("============= END ===============")
 
-
-main()
+if len(sys.argv) < 2:
+    input("Usage: python3 main.py <path_to_book>")
+    sys.exit(1)
+else:
+    main()
